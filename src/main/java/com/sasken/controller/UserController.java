@@ -21,7 +21,7 @@ public class UserController {
 	@Autowired
 	private UserService service;
 
-	@PostMapping("/add")
+	@PostMapping("add")
 	public ResponseEntity<String> addUser(@RequestBody User user){
 		
 		String msg;
@@ -30,6 +30,7 @@ public class UserController {
 			msg="User Created";
 		}catch(Exception e) {
 			msg="User already exists!!!";
+			return new ResponseEntity<String>(msg,HttpStatus.CONFLICT);
 		}
 		
 		System.out.println("User Created");
